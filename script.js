@@ -62,6 +62,7 @@ app.component("database-website-component", {
 			sortKey: "",
 		};
 	},
+	// Each time the table gets re-computed we will call 'filteredTitles'
 	computed: {
 		filteredTitles: function () {
 			const sortKey = this.sortKey;
@@ -83,6 +84,7 @@ app.component("database-website-component", {
 				entries = entries.slice().sort(function (x, y) {
 					x = x[sortKey];
 					y = y[sortKey];
+					// This is ( x = y set to 0;) [x > y set it to 1] {otherwise anything else set to -1}
 					return (x === y ? 0 : x > y ? 1 : -1) * order;
 				});
 			}
@@ -108,3 +110,5 @@ app.component("database-website-component", {
 		},
 	},
 });
+
+app.mount("#database-website");

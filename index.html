@@ -12,7 +12,7 @@
 			<table>
 			  <thead>
 			    <tr>
-			      <th v-for="key in columns">
+			      <th v-for="key in columns"
 			        @click="sortBy(key)"
 			        :class="{ active: sortKey == key }">
 			        {{ capitalize(key) }}
@@ -35,7 +35,21 @@
 	</head>
 
 	<body>
-		<h1>Database Website</h1>
+		<div id="database-website">
+			<form id="search">
+				<p>Search</p>
+
+				<input title="searchField" v-model="searchInput" />
+			</form>
+
+			<!-- This comes from 'app.Component("database-website-component")' -->
+			<database-website-component
+				:entries="dataset"
+				:columns="dataColumns"
+				:filter-key="searchInput"
+			>
+			</database-website-component>
+		</div>
 
 		<script src="script.js"></script>
 	</body>
